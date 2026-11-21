@@ -1,4 +1,5 @@
 <article class="card">
+  {% if p.old_price %}<span class="badge">Скидка</span>{% endif %}
   <a href="{{ url_for('product', pid=p.id) }}" class="card-img">{{ p.name[:1] }}</a>
   <a href="{{ url_for('product', pid=p.id) }}" class="card-name">{{ p.name }}</a>
   <div class="price">
