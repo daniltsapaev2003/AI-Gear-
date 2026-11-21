@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}TechStore — главная{% endblock %}
 {% block content %}
+<section class="hero">
+  <h2>Техника для работы и жизни</h2>
+  <p>Смартфоны, ноутбуки и аудио. Подберём модель по задачам и бюджету.</p>
+</section>
 <h1>Хиты продаж</h1>
 <div class="grid">
   {% for p in products %}
