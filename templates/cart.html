@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Корзина — TechStore{% endblock %}
+{% block content %}
+<h1>Корзина</h1>
+{% if items %}
+<table class="cart">
+  <tr><th>Товар</th><th>Кол-во</th><th>Сумма</th><th></th></tr>
+  {% for item in items %}
+  <tr>
+    <td><a href="{{ url_for('product', pid=item.product.id) }}">{{ item.product.name }}</a></td>
+    <td>{{ item.qty }}</td>
+    <td>{{ "{:,}".format(item.sum).replace(",", " ") }} ₽</td>
+    <td>
+      <form method="post" action="{{ url_for('cart_remove', pid=item.product.id) }}">
+        <button type="submit" class="secondary">Удалить</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<p class="total">Итого: <strong>{{ "{:,}".format(total).replace(",", " ") }} ₽</strong></p>
+<p class="note">Оформление заказа в этом демо не реализовано.</p>
+{% else %}
+<p>Корзина пуста.</p>
+{% endif %}
+{% endblock %}
