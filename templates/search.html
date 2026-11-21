@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Поиск — TechStore{% endblock %}
+{% block content %}
+<h1>Поиск: {{ query }}</h1>
+{% if products %}
+<div class="grid">
+  {% for p in products %}
+    {% include "_card.html" %}
+  {% endfor %}
+</div>
+{% else %}
+<p>Ничего не найдено.</p>
+{% endif %}
+{% endblock %}

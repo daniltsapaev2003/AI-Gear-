@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }} — TechStore{% endblock %}
+{% block content %}
+<h1>{{ category.name }}</h1>
+{% if products %}
+<div class="grid">
+  {% for p in products %}
+    {% include "_card.html" %}
+  {% endfor %}
+</div>
+{% else %}
+<p>В этой категории пока нет товаров.</p>
+{% endif %}
+{% endblock %}

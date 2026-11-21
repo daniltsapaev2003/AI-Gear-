@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TechStore{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="{{ url_for('index') }}">TechStore</a>
+    <form class="search" action="{{ url_for('search') }}" method="get">
+      <input type="search" name="q" placeholder="Поиск товаров" value="{{ request.args.get('q', '') }}">
+      <button type="submit">Найти</button>
+    </form>
+    <a class="cart-link" href="{{ url_for('cart') }}">Корзина ({{ cart_count }})</a>
+  </header>
+  <nav class="categories">
+    {% for c in categories %}
+      <a href="{{ url_for('catalog', slug=c.slug) }}">{{ c.name }}</a>
+    {% endfor %}
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>Учебный демо-магазин. Товары и цены не реальные.</p>
+  </footer>
+</body>
+</html>

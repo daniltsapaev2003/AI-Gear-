@@ -1,0 +1,11 @@
+<article class="card">
+  <a href="{{ url_for('product', pid=p.id) }}" class="card-img">{{ p.name[:1] }}</a>
+  <a href="{{ url_for('product', pid=p.id) }}" class="card-name">{{ p.name }}</a>
+  <div class="price">
+    <span class="now">{{ "{:,}".format(p.price).replace(",", " ") }} ₽</span>
+    {% if p.old_price %}<span class="old">{{ "{:,}".format(p.old_price).replace(",", " ") }} ₽</span>{% endif %}
+  </div>
+  <form method="post" action="{{ url_for('cart_add', pid=p.id) }}">
+    <button type="submit">В корзину</button>
+  </form>
+</article>

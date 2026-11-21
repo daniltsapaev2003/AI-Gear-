@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} — TechStore{% endblock %}
+{% block content %}
+<div class="product">
+  <div class="product-img">{{ product.name[:1] }}</div>
+  <div class="product-info">
+    <h1>{{ product.name }}</h1>
+    <p class="description">{{ product.description }}</p>
+    <div class="price">
+      <span class="now">{{ "{:,}".format(product.price).replace(",", " ") }} ₽</span>
+      {% if product.old_price %}<span class="old">{{ "{:,}".format(product.old_price).replace(",", " ") }} ₽</span>{% endif %}
+    </div>
+    <form method="post" action="{{ url_for('cart_add', pid=product.id) }}">
+      <button type="submit">Добавить в корзину</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
